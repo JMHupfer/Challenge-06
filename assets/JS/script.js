@@ -5,8 +5,6 @@ var city = []
 var inputElement = document.querySelector("#searchcity")
 var searchButton = document.querySelector(".search")
 
-console.log(searchButton)
-
 searchButton.addEventListener("click", function(event) {
     event.preventDefault();
     console.log(inputElement.value);
@@ -34,18 +32,16 @@ function getWeather(lat, lon){
     })
     .then(function(data){
         console.log(data);
+        document.getElementById("temp").textContent = data.main.temp
+        document.getElementById("humidity").textContent = data.main.humidity
+        document.getElementById("wind").textContent = data.main.wind
+        document.getElementById("temp2").textContent = data.main.temp
+        document.getElementById("humidity2").textContent = data.main.humidity
+        document.getElementById("wind2").textContent = data.main.wind
     })
 }
 
-// var cityTemp = document.getElementById("temp").textContent
-// var cityHumidity = document.getElementById("humidity").textContent
-// var cityWind = document.getElementById("wind").textContent
 
-// var cityTemp2 = document.getElementById("temp2").textContent
-// var cityHumidity2 = document.getElementById("humidity2").textContent
-// var cityWind2 = document.getElementById("wind2").textContent
-
-document.getElementById("temp").textContent = data.temp
 
 
 
