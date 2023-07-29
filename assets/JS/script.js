@@ -1,62 +1,58 @@
-var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc"
-var requestUrlGeo = "https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc"
-var apiKey = "27188ffde4e8c2e5bf4b2ab0515b5ddc"
-var city = []
-var inputElement = document.querySelector("#searchcity")
-var searchButton = document.querySelector(".search")
+var requestUrl =
+  "https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc";
+var requestUrlGeo =
+  "https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc";
+const apiKey = "27188ffde4e8c2e5bf4b2ab0515b5ddc";
 
-searchButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    console.log(inputElement.value);
-    getCurrentWeather(inputElement.value);
-})
+const searchBtn = document.querySelector(".search");
+const searchCity = document.querySelector("#searchcity");
 
-function getCurrentWeather(city) {
-    var URL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc"
-    fetch(URL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data[0].lat);
-            console.log(data[0].lon);
-            getWeather(data[0].lat, data[0].lon)
-        });
-}
+searchBtn.addEventListener("click", function () {
+  const city = searchCity.value;
 
-function getWeather(lat, lon) {
-    var URL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc&units=metric"
-    fetch(URL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            document.getElementById("temp").textContent = data.main.temp
-            document.getElementById("humidity").textContent = data.main.humidity
-            document.getElementById("wind").textContent = data.wind.speed
-        });
-        
-        var URL2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=27188ffde4e8c2e5bf4b2ab0515b5ddc&units=metric"
-        fetch(URL2)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            var forecast = data.list
-            console.log(forecast[3]);
-            console.log(forecast[11]);
-            console.log(forecast[19]);
-            console.log(forecast[27]);
-            console.log(forecast[35]);
-            // document.getElementById("temp2").textContent = data.main.temp
-            // document.getElementById("humidity2").textContent = data.main.humidity
-            // document.getElementById("wind2").textContent = data.wind.speed
-            // for (var i = 3; i < forecast.length; i + 6) {
-                //     const element = forecast[i];
-                //     console.log(element)
-                // }
-        })
+  const queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
+  fetch(queryUrl)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(displayWeatherData)
+    .catch(function (error) {
+      console.log("Looks like there was a problem: \n", error);
+    });
+});
+
+function displayWeatherData(data) {
+  if (!data.city || !data.list) {
+    console.error("Unexpected API response", data);
+    return;
+  }
+
+  var cityElem = document.getElementById("cities");
+
+  cityElem.textContent = data.city.name;
+
+  for (let i = 0; i < 5; i++) {
+    var weatherData = data.list[i * 8];
+    var date = new Date(weatherData.dt * 1000);
+    var dayElem = document.getElementById("day" + (i + 1));
+
+    dayElem.querySelector(".date").textContent = `${
+      date.getMonth() + 1
+    }/${date.getDate()}/${date.getFullYear()}`;
+    dayElem.querySelector(
+      "#img" + (i + 1)
+    ).src = `http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`;
+    dayElem.querySelector(
+      "#day" + (i + 1) + "Min"
+    ).textContent = `Temp: ${weatherData.main.temp_min} °C`;
+    dayElem.querySelector(
+      "#day" + (i + 1) + "Max"
+    ).textContent = `Temp: ${weatherData.main.temp_max} °C`;
+  }
 }
 
 
