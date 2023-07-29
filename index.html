@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="assets\CSS\style.css">
     <title>Weather Forecast</title>
 </head>
-
 <body>
     <header>
         <h1 class="header p-4 text-center">
@@ -17,78 +15,62 @@
         </h1>
     </header>
     <div class="container border-bottom border-4 p-3">
-        <form id="form col" class="csform">
-            <h2 class="search2 fs-3">
-                Search for a City:
-            </h2>
-            <div class="citysearch mb-2">
-                <input type="text" class="form-control" id="searchcity" placeholder="Search City Here">
-            </div>
-            <button type="button" class="search btn btn-primary">Search</button>
-        </form>
-    </div>
-    <div class="sameDayForecast" id="sameDayForecast2">
-        <h2 id="cities">El Paso, TX</h2>
-        <h2 id="temp"></h2>
-        <h2 id="humidity"></h2>
-        <h2 id="wind"></h2>
-        <img src="" alt="">
-    </div>
-    <div id="weatherContainer">
-        <div id="iconsContainer">
-            <div class="forecast2 fs-2 p-2">
-                5-Day Forecast:
-            </div>
-            <div class="icons">
-                <p class="weather" id="day1"></p>
-                <div class="image"><img src="assets\IMG\dots.jpg" class="imgClass" id="img1" alt=""></div>
-                <p class="minValues" id="day1Min">Loading....</p>
-                <p class="maxValues" id="day1Max">Loading....</p>
-                <p id="temp2"></p>
-                <p id="humidity2"></p>
-                <p id="wind2"></p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day2"></p>
-                <div class="image"><img src="assets\IMG\dots.jpg" class="imgClass" id="img2" alt=""></div>
-                <p class="minValues" id="day2Min">Loading....</p>
-                <p class="maxValues" id="day2Max">Loading....</p>
-                <p id="temp2"></p>
-                <p id="humidity2"></p>
-                <p id="wind2"></p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day3"></p>
-                <div class="image"><img src="assets\IMG\dots.jpg" class="imgClass" id="img3" alt=""></div>
-                <p class="minValues" id="day3Min">Loading....</p>
-                <p class="maxValues" id="day3Max">Loading....</p>
-                <p id="temp2"></p>
-                <p id="humidity2"></p>
-                <p id="wind2"></p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day4"></p>
-                <div class="image"><img src="assets\IMG\dots.jpg" class="imgClass" id="img4" alt=""></div>
-                <p class="minValues" id="day4Min">Loading....</p>
-                <p class="maxValues" id="day4Max">Loading....</p>
-                <p id="temp2"></p>
-                <p id="humidity2"></p>
-                <p id="wind2"></p>
-            </div>
-            <div class="icons">
-                <p class="weather" id="day5"></p>
-                <div class="image"><img src="assets\IMG\dots.jpg" class="imgClass" id="img5" alt=""></div>
-                <p class="minValues" id="day5Min">Loading....</p>
-                <p class="maxValues" id="day5Max">Loading....</p>
-                <p id="temp2"></p>
-                <p id="humidity2"></p>
-                <p id="wind2"></p>
-            </div>
+        <div class="search-container">
+            <form id="form col" class="csform">
+                <h2 class="search2 fs-3">
+                    Search for a City:
+                </h2>
+                <div class="citysearch mb-2">
+                    <input type="text" class="form-control" id="searchcity" placeholder="Search City Here">
+                </div>
+                <button type="button" class="search btn btn-primary">Search</button>
+            </form>
         </div>
     </div>
-
-        
+    <div class="sameDayForecast" id="sameDayForecast2">
+        <div class="today-weather">
+            <h2 id="cities">City Name</h2>
+            <h2 id="temp"></h2>
+            <h2 id="humidity"></h2>
+            <h2 id="wind"></h2>
+            <img src="assets/IMG/weatherPic.jpg" alt="Weather Image">
+        </div>
+    </div>
+    <div id="weatherContainer">
+        <h2 class="forecast-title">5-Day Forecast:</h2>
+        <div id="iconsContainer">
+            <div id="day1" class="forecast-day">
+                <p class="date"></p>
+                <img id="img1" src="" alt="weather icon">
+                <p id="day1Min"></p>
+                <p id="day1Max"></p>
+              </div>
+              <div id="day2" class="forecast-day">
+                <p class="date"></p>
+                <img id="img2" src="" alt="weather icon">
+                <p id="day2Min"></p>
+                <p id="day2Max"></p>
+              </div>
+              <div id="day3" class="forecast-day">
+                <p class="date"></p>
+                <img id="img3" src="" alt="weather icon">
+                <p id="day3Min"></p>
+                <p id="day3Max"></p>
+              </div>
+              <div id="day4" class="forecast-day">
+                <p class="date"></p>
+                <img id="img4" src="" alt="weather icon">
+                <p id="day4Min"></p>
+                <p id="day4Max"></p>
+              </div>
+              <div id="day5" class="forecast-day">
+                <p class="date"></p>
+                <img id="img5" src="" alt="weather icon">
+                <p id="day5Min"></p>
+                <p id="day5Max"></p>
+              </div>
+            </div>
+    </div>
     <script src="./assets/JS/script.js"></script>
 </body>
-
 </html>
